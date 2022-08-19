@@ -1,0 +1,86 @@
+
+#pnlAgregar {
+    margin: 15px;
+    border: 1px solid black;
+
+}
+
+#tabla {
+    margin: 15px;
+    width: 97.8%;
+}
+
+legend {
+    margin-left: 20px;
+}
+
+.col-sm-12 {
+    margin-bottom: 10px;
+}
+
+.clearfix {
+    clear: both;
+    float: none;
+}
+
+#pnlPrincipal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin: 15px;
+}
+
+#pnlIzq {
+    width: 80%;
+}
+
+.divider {
+    width: 4%;
+}
+
+#pnlDer {
+    width: 80%;
+
+}
+
+.orderV {
+    display: flex;
+    flex-direction: column;
+    flex-basis: auto;
+}
+
+.col-auto {
+    margin-top: 18.5%;
+    width: 100%;
+    height: 20px;
+    padding-top: 4px;
+}
+
+.col-auto button {
+    margin-top: 3px;
+}
+
+#pnlBotones button {
+    margin-right: 8px;
+}
+
+#pnlBotones > :first-child img {
+    padding-left: 5px;
+    width: 32px;
+    height: 24px;
+}
+
+#pagination {
+    float: right;
+    margin-right: 28px;
+}
+
+.btn btn-danger {
+    margin-right: 5px !important;
+}
+
+.btn btn-success {
+    background-color: lightblue !important;
+    margin-left: 5px !important;
+}

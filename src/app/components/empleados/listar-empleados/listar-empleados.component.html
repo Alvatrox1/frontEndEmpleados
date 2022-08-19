@@ -1,0 +1,102 @@
+
+<div id="pnlAgregar">
+    <form #addForm="ngForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <legend> {{ datos }} del empleado </legend>
+    
+            <div id="pnlPrincipal">
+                <div id="pnlIzq">
+                    <div class="col-sm-12">
+                        <label for="exampleFormControlInput1" class="form-label"> BRM (Buscar) : </label>
+                        <input type="email" class="form-control" name="brm" #brm="ngModel" [(ngModel)]="empleado.brm" 
+                                id="exampleFormControlInput1" placeholder="Ej. 123456" required
+                        >
+                    </div>
+                    <div class="validacion" *ngIf="!brm.valid && !brm.touched">
+                        El BRM No es Valido y es Requerido!,
+                    </div>
+            
+                    <div class="col-sm-12">
+                        <label for="exampleFormControlInput1" class="form-label"> Nombre : </label>
+                        <input type="email" class="form-control" name="nombre" #nombre="ngModel" 
+                                [(ngModel)]="empleado.nombre" id="exampleFormControlInput1" 
+                                placeholder="Mi Nombre" required
+                        >
+                    </div>
+            
+                     <div class="col-sm-12">
+                        <label for="formFile" class="form-label"> Foto : </label>
+                        <input class="form-control" name="foto" #foto="ngModel" [(ngModel)]="empleado.foto" 
+                            type="file" id="formFile" (change)="cargarArchivo($event.target);" required
+                        >
+                    </div>
+                </div>
+    
+                <div class="divider">
+    
+                </div>
+    
+                <div id="pnlDer">
+    
+                    <div class="orderV">
+                        <label for="formFile" class="form-label"> Puesto : </label>
+                        <select class="form-select" name="puesto" #puesto="ngModel" [(ngModel)]="empleado.puesto" 
+                        aria-label="Default select example" required>
+                            <option selected> Seleccione el Puesto </option>
+                            <option value="Desarrollador Frontend"> Desarrollador Frontend </option>
+                            <option value="Desarrollador Backend"> Desarrollador Backend </option>
+                            <option value="Desarrollador Movil"> Desarrollador Movil </option>
+                            <option value="Recursos Humanos"> Recursos Humanos </option>
+                            <option value="Asistente"> Asistente </option>
+                            <option value="Empleado"> Empleado </option>
+                        </select>
+        
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary col-sm-12"> Agregar </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </fieldset>
+    </form>
+
+</div>
+
+<div>
+    <table id="tabla" class="table">
+        <thead class="table-dark">
+            <tr>
+            <th scope="col"> # </th>
+            <th scope="col"> BRM </th>
+            <th scope="col"> Nombre </th>
+            <th scope="col"> Foto del Empleado </th>
+            <th scope="col"> Puesto </th>
+            <th scope="col"> Acciones </th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor="let empleado of empleadosList | paginate: { itemsPerPage: 5, currentPage: pages }">
+                <th scope="row"> {{ empleado.id_empleado }} </th>
+                <td> {{ empleado.brm }} </td>
+                <td> {{ empleado.nombre }} </td>
+                <td> {{ empleado.foto }} </td>
+                <td> {{ empleado.puesto }} </td>
+                <td>
+                    <div id="pnlBotones">
+                        <button type="button" class="btn btn-secondary" 
+                            routerLink="/empleados/editar-empleado/{{ empleado.id_empleado }}" title="Editar Empleado"> 
+                            <img src="../../../../assets/images/file.png" width="24" /> 
+                        </button>
+                        <button type="button" class="btn btn-danger" (click)="eliminarEmpleado( empleado.id_empleado )" 
+                            title="Eliminar Empleado"> <img src="../../../../assets/images/trash.png" width="24" /> 
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="pagination">
+        <pagination-controls   pagination-controls (pageChange)="pages = $event"> </pagination-controls>
+    </div>
+</div>
